@@ -18,14 +18,21 @@ class plantPopulation : public GridCell<plantPopulationState, double> {
 
 	[[nodiscard]] plantPopulationState localComputation(plantPopulationState state,
 		const std::unordered_map<std::vector<int>, NeighborData<plantPopulationState, double>>& neighborhood) const override {
-		int live_neighbors = 0;
+		plantResources total_neighbourhood_resources = plantResources();
 
 		for (const auto& [neighborId, neighborData]: neighborhood) {
 			auto nState = neighborData.state;
 
-			
+			total_neighbourhood_resources.water += nState.water;
+			total_neighbourhood_resources.sunlight += nState.sunlight;
+			total_neighbourhood_resources.nitrogen += nState.nitrogen;
+			total_neighbourhood_resources.potassium += nState.potassium;
 		}
-		
+		plantResources average_resources = plantPopulation();
+		average_resources.water = total_neighbourhood_resources.water / neighborhood.size();
+		average_resources.sunlight = total_neighbourhood_resources.sunlight / neighborhood.size();
+		average_resources.nitrogen = total_neighbourhood_resources.nitrogen / neighborhood.size();
+		average_resources.potassium = total_neighbourhood_resources.potassium / neighborhood.size();
 
 		return state;
 	}
