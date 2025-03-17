@@ -23,9 +23,7 @@ class plantPopulation : public GridCell<plantPopulationState, double> {
 		for (const auto& [neighborId, neighborData]: neighborhood) {
 			auto nState = neighborData.state;
 
-			if(nState->life == true) {
-				live_neighbors++;
-			}
+			
 		}
 		
 
@@ -37,4 +35,4 @@ class plantPopulation : public GridCell<plantPopulationState, double> {
 	}
 };
 
-#endif //PLANT_POPULATION_CELL_HPP_
+#endif //PLANT_POPULATION_CELL_HPP

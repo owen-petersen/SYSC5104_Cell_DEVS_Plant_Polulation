@@ -3,29 +3,72 @@
 
 #include <iostream>
 #include <nlohmann/json.hpp>
+#include "plantResources.hpp"
+
+enum class treeSpecies {
+	None = 0,
+	Locust = 1,
+	Pine = 2,
+	Oak = 3,
+};
+
+std::ostream& operator<<(std::ostream& os, const treeSpecies& x) {
+	os << (uint)x;
+	return os;
+}
 
 //! Plant population cell state.
 struct plantPopulationState {
-	bool life;
+	plantResources current_resources;
+	plantResources max_resources;
+	plantResources produced_resources;
+	plantResources req_to_survive;
+	plantResources req_to_grow;
+	uint tree_height;
+	treeSpecies tree_type;
 
 	//! Default constructor function.
-	plantPopulationState() : life(false) {}
+	plantPopulationState() : current_resources(),
+							 max_resources(), 
+							 produced_resources(),
+							 req_to_survive(),
+							 req_to_grow(), 
+							 tree_height(0),
+							 tree_type(treeSpecies::None) {}
 };
 
 //! It prints the life of the cell in an output stream.
 std::ostream& operator<<(std::ostream& os, const plantPopulationState& x) {
-	os << "<" << ((x.life)? 1 : 0) << ">";
+	os << "<" << x.current_resources << "," 
+		<< x.max_resources << "," 
+		<< x.produced_resources << "," 
+		<< x.req_to_survive << "," 
+		<< x.req_to_grow << "," 
+		<< x.tree_height << "," 
+		<< x.tree_type << ">";
 	return os;
 }
 
 //! The simulator must be able to compare the equality of two state objects
 bool operator!=(const plantPopulationState& x, const plantPopulationState& y) {
-	return x.life != y.life;
+	return (x.current_resources != y.current_resources) ||
+			(x.max_resources != y.max_resources) ||
+			(x.produced_resources != y.produced_resources) ||
+			(x.req_to_survive != y.req_to_survive) ||
+			(x.req_to_grow != y.req_to_grow) ||
+			(x.tree_height != y.tree_height) ||
+			(x.tree_type != y.tree_type);
 }
 
 //! It parses a JSON file and generates the corresponding plantPopulationState object.
 void from_json(const nlohmann::json& j, plantPopulationState& s) {
-	j.at("life").get_to(s.life);
+	j.at("current_resources").get_to(s.current_resources);
+	j.at("max_resources").get_to(s.max_resources);
+	j.at("produced_resources").get_to(s.produced_resources);
+	j.at("req_to_survive").get_to(s.req_to_survive);
+	j.at("req_to_grow").get_to(s.req_to_grow);
+	j.at("tree_height").get_to(s.tree_height);
+	j.at("tree_type").get_to(s.tree_type);
 }
 
 #endif //PLANT_POPULATION_STATE_HPP_
