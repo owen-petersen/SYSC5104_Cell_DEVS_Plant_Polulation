@@ -17,23 +17,62 @@ class plantPopulation : public GridCell<plantPopulationState, double> {
 		  ): GridCell<plantPopulationState, double>(id, config) { }
 
 	[[nodiscard]] plantPopulationState localComputation(plantPopulationState state,
-		const std::unordered_map<std::vector<int>, NeighborData<plantPopulationState, double>>& neighborhood) const override {
+		const std::unordered_map<std::vector<int>, NeighborData<plantPopulationState, double>>& neighborhood) const override 
+	{
+		treeSpecies best_seed = treeSpecies::None;
 		plantResources total_neighbourhood_resources = plantResources();
 
 		for (const auto& [neighborId, neighborData]: neighborhood) {
-			auto nState = neighborData.state;
+			auto nStateResources = neighborData.state->current_resources;
 
-			total_neighbourhood_resources.water += nState.water;
-			total_neighbourhood_resources.sunlight += nState.sunlight;
-			total_neighbourhood_resources.nitrogen += nState.nitrogen;
-			total_neighbourhood_resources.potassium += nState.potassium;
+			state.current_resources.water += 
+				0.25 * (total_neighbourhood_resources.water - nStateResources.water);
+			state.current_resources.sunlight += 
+				0.25 * (total_neighbourhood_resources.sunlight - nStateResources.sunlight);
+			state.current_resources.nitrogen += 
+				0.25 * (total_neighbourhood_resources.nitrogen - nStateResources.nitrogen);
+			state.current_resources.potassium += 
+				0.25 * (total_neighbourhood_resources.potassium - nStateResources.potassium);
+
+				
+			best_seed = (treeSpecies)std::max((int)best_seed, (int)(neighborData.state->tree_type));
 		}
-		plantResources average_resources = plantPopulation();
-		average_resources.water = total_neighbourhood_resources.water / neighborhood.size();
-		average_resources.sunlight = total_neighbourhood_resources.sunlight / neighborhood.size();
-		average_resources.nitrogen = total_neighbourhood_resources.nitrogen / neighborhood.size();
-		average_resources.potassium = total_neighbourhood_resources.potassium / neighborhood.size();
 
+		// Cell produces its own resources
+		state.current_resources.water += state.produced_resources.water;
+		state.current_resources.sunlight += state.produced_resources.sunlight;
+		state.current_resources.nitrogen += state.produced_resources.nitrogen;
+		state.current_resources.potassium += state.produced_resources.potassium;
+
+		if (treeSpecies::None == state.tree_type) {
+			state.tree_type = best_seed;
+		} else {
+			if ((state.req_to_survive.water > state.current_resources.water) ||
+				(state.req_to_survive.sunlight > state.current_resources.sunlight) ||
+				(state.req_to_survive.nitrogen > state.current_resources.nitrogen) ||
+				(state.req_to_survive.potassium > state.current_resources.potassium))
+			{
+				// TODO Clear tree height/type to 0 when cell dies
+			} else if ((state.req_to_grow.water > state.current_resources.water) ||
+				(state.req_to_grow.sunlight > state.current_resources.sunlight) ||
+				(state.req_to_grow.nitrogen > state.current_resources.nitrogen) ||
+				(state.req_to_grow.potassium > state.current_resources.potassium))
+			{
+				// Cell survives but does not grow
+				state.current_resources.water - state.req_to_survive.water;
+				state.current_resources.sunlight - state.req_to_survive.sunlight;
+				state.current_resources.nitrogen - state.req_to_survive.nitrogen;
+				state.current_resources.potassium - state.req_to_survive.potassium;
+			} else {
+				// Cell grows
+				state.current_resources.water - state.req_to_grow.water;
+				state.current_resources.sunlight - state.req_to_grow.sunlight;
+				state.current_resources.nitrogen - state.req_to_grow.nitrogen;
+				state.current_resources.potassium - state.req_to_grow.potassium;
+			
+				state.tree_height++;
+			}
+		}
 		return state;
 	}
 
