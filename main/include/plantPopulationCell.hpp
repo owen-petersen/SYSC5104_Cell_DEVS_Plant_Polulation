@@ -39,11 +39,11 @@ class plantPopulation : public GridCell<plantPopulationState, double> {
 			if (treeSpecies::None == state.tree_type) {
 				// Is neighboring tree tall enough to spread seed?
 				if (((treeSpecies::Locust == neighborData.state->tree_type) &&
-					(10 <= neighborData.state->tree_height)) ||
+					(8 <= neighborData.state->tree_height)) ||
 					((treeSpecies::Pine == neighborData.state->tree_type) &&
 					(12 <= neighborData.state->tree_height)) ||
 					((treeSpecies::Oak == neighborData.state->tree_type) &&
-					(17 <= neighborData.state->tree_height)))
+					(20 <= neighborData.state->tree_height)))
 				{
 					// Better sees "preempt" other seeds attempting to move to empty cell
 					// (in order of worst to best: Locust -> Pine -> Oak) 
@@ -86,9 +86,9 @@ class plantPopulation : public GridCell<plantPopulationState, double> {
 			else if (((treeSpecies::Locust == state.tree_type) &&
 						(40 > state.tree_height)) ||
 						((treeSpecies::Pine == state.tree_type) &&
-						(70 > state.tree_height)) ||
+						(55 > state.tree_height)) ||
 						((treeSpecies::Oak == state.tree_type) &&
-						(55 > state.tree_height)))
+						(70 > state.tree_height)))
 			{
 				// Does tree have enough resources to grow?
 				if ((state.req_to_grow.water <= state.current_resources.water) &&

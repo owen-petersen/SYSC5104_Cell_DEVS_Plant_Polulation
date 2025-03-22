@@ -78,7 +78,7 @@
           "nitrogen" : 4,
           "potassium" : 3
         },
-        "tree_height" : 2,
+        "tree_height" : 0,
         "tree_type" : 1
       },
       "cell_map": [[1, 1]]
@@ -115,7 +115,7 @@
           "nitrogen" : 4,
           "potassium" : 3
         },
-        "tree_height" : 4,
+        "tree_height" : 0,
         "tree_type" : 2
       },
       "cell_map": [[4, 9]]
@@ -152,7 +152,7 @@
           "nitrogen" : 4,
           "potassium" : 3
         },
-        "tree_height" : 5,
+        "tree_height" : 0,
         "tree_type" : 3
       },
       "cell_map": [[9, 4]]
