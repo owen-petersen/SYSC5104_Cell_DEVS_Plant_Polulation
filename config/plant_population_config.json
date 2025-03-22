@@ -22,8 +22,8 @@
           "potassium" : 15
         },
         "produced_resources" : {
-          "water" : 6,
-          "sunlight" : 6,
+          "water" : 5,
+          "sunlight" : 5,
           "nitrogen" : 3,
           "potassium" : 2
         },
@@ -36,14 +36,14 @@
         "req_to_grow" : {
           "water" : 8,
           "sunlight" : 7,
-          "nitrogen" : 3,
+          "nitrogen" : 4,
           "potassium" : 3
         },
         "tree_height" : 0,
         "tree_type" : 0
       },
       "neighborhood": [
-        { "type": "moore", "range": 1 }
+        { "type": "von_neumann", "range": 1 }
       ]
     },
     "LocustSapling": {
@@ -61,8 +61,8 @@
           "potassium" : 15
         },
         "produced_resources" : {
-          "water" : 6,
-          "sunlight" : 6,
+          "water" : 5,
+          "sunlight" : 5,
           "nitrogen" : 3,
           "potassium" : 2
         },
@@ -75,7 +75,7 @@
         "req_to_grow" : {
           "water" : 8,
           "sunlight" : 7,
-          "nitrogen" : 3,
+          "nitrogen" : 4,
           "potassium" : 3
         },
         "tree_height" : 2,
@@ -98,8 +98,8 @@
           "potassium" : 15
         },
         "produced_resources" : {
-          "water" : 6,
-          "sunlight" : 6,
+          "water" : 5,
+          "sunlight" : 5,
           "nitrogen" : 3,
           "potassium" : 2
         },
@@ -112,7 +112,7 @@
         "req_to_grow" : {
           "water" : 8,
           "sunlight" : 7,
-          "nitrogen" : 3,
+          "nitrogen" : 4,
           "potassium" : 3
         },
         "tree_height" : 4,
@@ -135,8 +135,8 @@
           "potassium" : 15
         },
         "produced_resources" : {
-          "water" : 6,
-          "sunlight" : 6,
+          "water" : 5,
+          "sunlight" : 5,
           "nitrogen" : 3,
           "potassium" : 2
         },
@@ -149,7 +149,7 @@
         "req_to_grow" : {
           "water" : 8,
           "sunlight" : 7,
-          "nitrogen" : 3,
+          "nitrogen" : 4,
           "potassium" : 3
         },
         "tree_height" : 5,

@@ -22,8 +22,8 @@
           "potassium" : 15
         },
         "produced_resources" : {
-          "water" : 6,
-          "sunlight" : 6,
+          "water" : 5,
+          "sunlight" : 5,
           "nitrogen" : 3,
           "potassium" : 2
         },
@@ -36,14 +36,14 @@
         "req_to_grow" : {
           "water" : 8,
           "sunlight" : 7,
-          "nitrogen" : 3,
+          "nitrogen" : 4,
           "potassium" : 3
         },
         "tree_height" : 0,
         "tree_type" : 0
       },
       "neighborhood": [
-        { "type": "moore", "range": 1 }
+        { "type": "von_neumann", "range": 1 }
       ]
     },
     "LocustSapling": {
@@ -61,8 +61,8 @@
           "potassium" : 15
         },
         "produced_resources" : {
-          "water" : 6,
-          "sunlight" : 6,
+          "water" : 5,
+          "sunlight" : 5,
           "nitrogen" : 3,
           "potassium" : 2
         },
@@ -75,7 +75,7 @@
         "req_to_grow" : {
           "water" : 8,
           "sunlight" : 7,
-          "nitrogen" : 3,
+          "nitrogen" : 4,
           "potassium" : 3
         },
         "tree_height" : 2,
@@ -98,8 +98,8 @@
           "potassium" : 15
         },
         "produced_resources" : {
-          "water" : 6,
-          "sunlight" : 6,
+          "water" : 5,
+          "sunlight" : 5,
           "nitrogen" : 3,
           "potassium" : 2
         },
@@ -112,7 +112,7 @@
         "req_to_grow" : {
           "water" : 8,
           "sunlight" : 7,
-          "nitrogen" : 3,
+          "nitrogen" : 4,
           "potassium" : 3
         },
         "tree_height" : 4,
@@ -135,8 +135,8 @@
           "potassium" : 15
         },
         "produced_resources" : {
-          "water" : 6,
-          "sunlight" : 6,
+          "water" : 5,
+          "sunlight" : 5,
           "nitrogen" : 3,
           "potassium" : 2
         },
@@ -149,7 +149,7 @@
         "req_to_grow" : {
           "water" : 8,
           "sunlight" : 7,
-          "nitrogen" : 3,
+          "nitrogen" : 4,
           "potassium" : 3
         },
         "tree_height" : 5,
@@ -160,7 +160,7 @@
   },
     "viewer": [
       {
-        "colors": [[200, 200, 200], [160, 160, 200],[120, 120, 200],[80, 80, 160],[40, 40, 140],[0, 0, 120]],
+        "colors": [[200, 200, 200], [180, 180, 250],[150, 150, 250],[50, 50, 250],[50, 50, 200],[0, 0, 150]],
         "breaks": [0, 0.5, 6.5, 12.5, 18.5, 24.5, 30.5],
         "field": "water"
       },
@@ -170,7 +170,7 @@
         "field": "sunlight"
       },
       {
-        "colors": [[200, 200, 200], [160, 160, 160],[120, 120, 120],[80, 80, 80],[40, 40, 40],[0, 0, 0]],
+        "colors": [[200, 200, 200], [250, 180, 250],[250, 150, 250],[250, 50, 250],[200, 50, 200],[150, 0, 150]],
         "breaks": [0, 0.5, 3.5, 6.5, 9.5, 12.5, 15.5],
         "field": "nitrogen"
       },
@@ -185,7 +185,7 @@
         "field": "tree_height"
       },
       {
-        "colors": [[150, 150, 150], [200, 100, 100], [100, 200, 100], [100, 100, 200]],
+        "colors": [[200, 200, 200], [200, 100, 100], [100, 200, 100], [100, 100, 200]],
         "breaks": [0, 0.5, 1.5, 2.5, 3.5],
         "field": "tree_type"
       }

@@ -29,11 +29,11 @@ class plantPopulation : public GridCell<plantPopulationState, double> {
 			state.current_resources.water += 
 				0.25 * (nStateResources.water - state.current_resources.water);
 			state.current_resources.sunlight += 
-				0.25 * (nStateResources.sunlight - state.current_resources.water);
+				0.25 * (nStateResources.sunlight - state.current_resources.sunlight);
 			state.current_resources.nitrogen += 
-				0.25 * (nStateResources.nitrogen - state.current_resources.water);
+				0.25 * (nStateResources.nitrogen - state.current_resources.nitrogen);
 			state.current_resources.potassium += 
-				0.25 * (nStateResources.potassium - state.current_resources.water);
+				0.25 * (nStateResources.potassium - state.current_resources.potassium);
 
 			// Does this cell already have a tree? (if not seed can spread from neighbors)
 			if (treeSpecies::None == state.tree_type) {
