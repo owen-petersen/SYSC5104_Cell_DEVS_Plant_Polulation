@@ -39,11 +39,10 @@ struct plantPopulationState {
 
 //! It prints the life of the cell in an output stream.
 std::ostream& operator<<(std::ostream& os, const plantPopulationState& x) {
-	os << "<" << x.current_resources << "," 
-		<< x.max_resources << "," 
-		<< x.produced_resources << "," 
-		<< x.req_to_survive << "," 
-		<< x.req_to_grow << "," 
+	os << "<" << x.current_resources.water << "," 
+		<< x.current_resources.sunlight << ","
+		<< x.current_resources.nitrogen << "," 
+		<< x.current_resources.potassium << "," 
 		<< x.tree_height << "," 
 		<< x.tree_type << ">";
 	return os;

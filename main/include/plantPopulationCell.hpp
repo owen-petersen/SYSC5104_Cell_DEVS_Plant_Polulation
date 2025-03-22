@@ -88,7 +88,7 @@ class plantPopulation : public GridCell<plantPopulationState, double> {
 						((treeSpecies::Pine == state.tree_type) &&
 						(70 > state.tree_height)) ||
 						((treeSpecies::Oak == state.tree_type) &&
-						(60 > state.tree_height)))
+						(55 > state.tree_height)))
 			{
 				// Does tree have enough resources to grow?
 				if ((state.req_to_grow.water <= state.current_resources.water) &&
