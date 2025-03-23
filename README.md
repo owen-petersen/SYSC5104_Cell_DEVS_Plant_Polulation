@@ -47,7 +47,7 @@ This repository is arranged in the following manner:
 
 ## System Components (Atomic and Coupled Models)
 
-This project includes one **atomic model** that defines the behavior of each vegetation cell, and a **coupled model** automatically generated using Cadmium’s Grid Cell-DEVS infrastructure to simulate interactions across the grid.
+This project includes one **atomic model** that defines the behavior of each plant cell, and a **coupled model** automatically generated using Cadmium’s Grid Cell-DEVS infrastructure to simulate interactions across the grid.
 
 ### **1. plantPopulation (Atomic Cell-DEVS)**  
 **File:** [`plantPopulationCell.hpp`](main/include/plantPopulationCell.hpp)  
