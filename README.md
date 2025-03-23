@@ -12,21 +12,37 @@ This repository is arranged in the following manner:
 
 ```sh
 .
-├── config/                             # Configuration files for visualization or simulation
-│   ├── plant_population_config.json
-│   ├── plant_population_visualization_config.json
+├── config/                             # Configuration files for each test scenario
+│   ├── initialTest/
+│   │   ├── plant_population_config.json
+│   │   └── plant_population_visualization_config.json
+│   ├── test1/
+│   │   ├── plant_population_config.json
+│   │   └── plant_population_visualization_config.json
+│   ├── test2/
+│   │   ├── plant_population_config.json
+│   │   └── plant_population_visualization_config.json
+├── log_files/                          # Output CSV logs generated after simulation
+│   ├── initialTest/
+│   │   ├── grid_log.csv
+│   │   └── grid_visualization_log.csv
+│   ├── test1/
+│   │   ├── grid_log.csv
+│   │   └── grid_visualization_log.csv
+│   └── test2/
+│       ├── grid_log.csv
+│       └── grid_visualization_log.csv
 ├── main/                               # Source code directory
 │   ├── include/                        # Header files for the model
 │   │   ├── plantPopulationCell.hpp     # Defines cell behavior and resource-based state updates
 │   │   ├── plantPopulationState.hpp    # Defines cell state: resources, tree type, and height
-│   │   ├── plantResources.hpp          # Defines and compares cell resources (water, sunlight, nitrogen, potassium)
+│   │   └── plantResources.hpp          # Defines and compares cell resources (water, sunlight, nitrogen, potassium)
 │   ├── main.cpp                        # Main file to simulate the full system
-│   ├── CMakeLists.txt                  # CMake configuration for the project
+│   └── CMakeLists.txt                  # CMake configuration for the main directory
 ├── build_sim.sh                        # Build script for Cadmium simulation
-├── grid_log.csv                        # Output log file of the simulation
-├── CMakeLists.txt                      # CMake configuration for building the project
+├── CMakeLists.txt                      # Root-level CMake configuration
 ├── .gitignore                          # Git ignore file
-└── README.md                           # This documentation file
+└── README.md                           # Project documentation
 ```
 
 ## System Components (Atomic and Coupled Models)
@@ -53,16 +69,7 @@ The **Grid Coupled Model** automatically connects a grid of `plantPopulation` at
 - Propagation of seed types.
 - Local competition and survival mechanisms.
 
-The coupled model is instantiated from a JSON config file and executed using Cadmium's simulation engine, with outputs logged to `grid_log.csv`.
-
-## **Main Simulation Files**  
-
-This section contains different main files used to execute and test the **Image Processing System**. Each file initializes the system components and runs simulations under various configurations.  
-
-### **Standard Simulation**  
-**File:** [main.cpp](main/main.cpp)  
-
-This file initializes and runs the **Image Processing System** using Cadmium. It sets up the **Top Model**, which integrates the **Loader, Filter, and Analyzer**, processes a predefined list of images, and executes the simulation for **25 seconds** to complete the full workflow.  
+The coupled model is instantiated from a JSON configuration file and executed using Cadmium’s simulation engine, with outputs logged to either `grid_log.csv` or `grid_visualization_log.csv`, depending on the test scenario.
 
 ## Dependencies
 This project assumes that you have Cadmium installed in a location accessible by the environment variable $CADMIUM.
@@ -77,27 +84,45 @@ source build_sim.sh
 __NOTE__: Everytime you run build_sim.sh, the contents of `build/` and `bin/` will be replaced.
 
 
-## **Execute**  
+## **Main Simulation Files**  
 
-To test each model, run the corresponding executable and check the logs in your terminal.  
+This section contains the main file used to execute and test the **Plant Population Simulation**. The simulation is configured using different test scenarios, each defined in its own configuration folder.  
 
-### **Full System Execution**  
-To test the entire **Image Processing System**, run:  
-```sh
-./bin/Image_Processing_System
+### **Main Simulation File**  
+**File:** [main.cpp](main/main.cpp)  
+
+This file initializes and runs the **Plant Population Model** using **Cadmium**. It loads the configuration file specified at runtime and simulates the evolution of tree populations based on resource availability and defined rules.  
+
+### **Running a Test**  
+
+To run a specific test scenario, use the following command:  
+
+```bash
+./bin/plant_population config/<test_name>/plant_population_config.json
 ```
-This will simulate the complete image processing workflow, from loading images to generating analysis reports.
 
-## **Logging Configuration**  
-By default, the simulation outputs logs to the terminal. If you prefer to log results into a **CSV file instead**, follow these steps:  
+Examples:  
+```bash
+./bin/plant_population config/initialTest/plant_population_config.json  
+./bin/plant_population config/test1/plant_population_config.json  
+./bin/plant_population config/test2/plant_population_config.json  
+```
 
-1. **Disable terminal output** by commenting out the following line in your main test files (`main_loader_tester.cpp`, `main_filter_tester.cpp`, etc.):  
-   ```cpp
-   // rootCoordinator.setLogger<STDOUTLogger>(";");
-   ```
+This will generate log files in the corresponding `log_files/<test_name>/` directory.
 
-2. **Enable CSV logging** by uncommenting the line below and specifying the appropriate log file path:
-   ```cpp
-   rootCoordinator.setLogger<CSVLogger>("log_files/loader/test_1_output.csv", ";");
-   ```
-This allows you to capture simulation results in structured CSV files instead of printing them directly to the terminal.
+### **Visualizing the Simulation**  
+
+To run a simulation specifically for visualization (e.g., to produce logs formatted for graphical output), use the visualization config instead:  
+
+```bash
+./bin/plant_population config/<test_name>/plant_population_visualization_config.json
+```
+
+Example:  
+```bash
+./bin/plant_population config/initialTest/plant_population_visualization_config.json
+./bin/plant_population config/test1/plant_population_visualization_config.json
+./bin/plant_population config/test2/plant_population_visualization_config.json
+```
+
+This will generate `grid_visualization_log.csv` under `log_files/<test_name>/`, which can be used with your visualization tools.
