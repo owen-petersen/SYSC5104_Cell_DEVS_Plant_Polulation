@@ -61,7 +61,8 @@ The **plantPopulation** atomic model defines the local behavior of each cell. At
 ---
 
 ### **2. Grid Coupled Model**  
-**Constructed in:** [`main.cpp`](main/main.cpp)  
+**Constructed in:** [`main.cpp`](main/main.cpp)
+  
 **Type:** `GridCellDEVSCoupled<plantPopulationState, double>`
 
 The **Grid Coupled Model** automatically connects a grid of `plantPopulation` atomic models using the **Von Neumann neighborhood**. Each cell interacts with its neighbors, allowing for realistic spatial dynamics such as:
