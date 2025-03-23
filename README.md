@@ -39,6 +39,10 @@ This repository is arranged in the following manner:
 │   │   └── plantResources.hpp          # Defines and compares cell resources (water, sunlight, nitrogen, potassium)
 │   ├── main.cpp                        # Main file to simulate the full system
 │   └── CMakeLists.txt                  # CMake configuration for the main directory
+├── simulation_videos/                  # WebM simulation outputs for each test
+│   ├── initialTest.webm
+│   ├── test1.webm
+│   └── test2.webm
 ├── build_sim.sh                        # Build script for Cadmium simulation
 ├── CMakeLists.txt                      # Root-level CMake configuration
 ├── .gitignore                          # Git ignore file
