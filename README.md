@@ -66,7 +66,7 @@ The **plantPopulation** atomic model defines the local behavior of each cell. At
 
 The **Grid Coupled Model** automatically connects a grid of `plantPopulation` atomic models using the **Von Neumann neighborhood**. Each cell interacts with its neighbors, allowing for realistic spatial dynamics such as:
 - Resource distribution across the grid.
-- Propagation of seed types.
+- Propagation of tree types.
 - Local competition and survival mechanisms.
 
 The coupled model is instantiated from a JSON configuration file and executed using Cadmium’s simulation engine, with outputs logged to either `grid_log.csv` or `grid_visualization_log.csv`, depending on the test scenario.
