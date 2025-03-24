@@ -59,7 +59,7 @@ This project includes one **atomic model** that defines the behavior of each pla
 The **plantPopulation** atomic model defines the local behavior of each cell. At every simulation step, each cell:
 - Exchanges **water**, **sunlight**, **nitrogen**, and **potassium** with neighboring cells through diffusion.
 - Produces its own resources.
-- Determines whether to **germinate a tree**, **survive**, or **grow** based on resource thresholds.
+- Determines whether to **survive** or **grow** based on resource thresholds.
 - Increments tree height or dies based on environmental conditions.
 
 ---
