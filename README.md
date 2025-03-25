@@ -123,7 +123,7 @@ To run a simulation specifically for visualization (e.g., to produce logs format
 ./bin/plant_population config/<test_name>/plant_population_visualization_config.json
 ```
 
-Example:  
+Examples:  
 ```bash
 ./bin/plant_population config/initialTest/plant_population_visualization_config.json
 ./bin/plant_population config/test1/plant_population_visualization_config.json
